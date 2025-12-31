@@ -1,38 +1,172 @@
+:root {
+  --primary: #6366f1;
+  --bg: #0f172a;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --text: #f8fafc;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  padding: 40px 20px;
   min-height: 100vh;
+}
+
+/* Floating background glow */
+.background-glow {
+  position: fixed;
+  top: -10%; left: -10%;
+  width: 40%; height: 40%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  z-index: -1;
+}
+
+.title {
+  font-size: 2.5rem;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+}
+
+.highlight { color: var(--primary); }
+
+.filter-panel {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 15px;
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+
+.modern-input {
+  padding: 15px 25px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: var(--card-bg);
   color: white;
+  font-size: 1.1rem;
+  outline: none;
+  backdrop-filter: blur(10px);
 }
 
-.App-link {
-  color: #61dafb;
+.select-group {
+  display: flex;
+  gap: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.modern-select {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--card-bg);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+}
+
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+}
+
+.glass-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.card-image {
+  position: relative;
+  height: 240px;
+}
+
+.card-image img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+.card-overlay {
+  position: absolute; inset: 0;
+  background: rgba(99, 102, 241, 0.4);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: 0.3s;
+  font-weight: bold;
+}
+
+.glass-card:hover .card-overlay { opacity: 1; }
+
+.card-info { padding: 15px; text-align: left; }
+
+.card-info h3 { margin: 0; font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.dept-badge {
+  font-size: 0.7rem;
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  padding: 2px 8px;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 8px 0;
+}
+
+.roll-text { margin: 0; color: #64748b; font-weight: bold; }
+
+/* Modal Design */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 24px;
+  width: 90%; max-width: 700px;
+  position: relative;
+}
+
+.modal-layout {
+  display: flex; gap: 30px;
+}
+
+.modal-img {
+  width: 250px; height: 320px; object-fit: cover; border-radius: 15px;
+}
+
+.info-row {
+  display: flex; justify-content: space-between;
+  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.scroll-btn {
+  position: fixed; bottom: 30px; right: 30px;
+  width: 50px; height: 50px; border-radius: 50%;
+  background: var(--primary); color: white;
+  border: none; cursor: pointer; font-size: 20px;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+  .modal-layout { flex-direction: column; align-items: center; }
+  .modal-img { width: 100%; height: 250px; }
 }
